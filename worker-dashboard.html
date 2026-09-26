@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="Find nearby work with WorkNear.">
+    <title>Worker Dashboard | WorkNear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="job-data.js" defer></script>
+    <script src="offer-data.js" defer></script>
+    <script src="worker-dashboard.js" defer></script>
+</head>
+
+<body class="worker-dashboard-page">
+    <header class="site-header">
+        <div class="container nav-shell">
+            <a class="brand" href="index.html" aria-label="WorkNear home"><span class="brand-mark"
+                    aria-hidden="true"></span><span>WORK<span class="brand-accent">NEAR</span></span></a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="worker-nav"><span></span><span></span></button>
+            <nav class="primary-nav worker-nav" id="worker-nav" aria-label="Worker dashboard navigation">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#popular-services">Find Workers</a>
+                <a class="nav-link" href="find-jobs.html">Find Jobs</a>
+                <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+                <a class="nav-link" href="#worker-profile">Profile</a>
+            </nav>
+            <div class="nav-actions"><button class="button button-ghost" type="button"
+                    data-worker-logout>Logout</button></div>
+        </div>
+    </header>
+
+    <main class="worker-dashboard-main">
+        <section class="worker-hero" aria-labelledby="worker-welcome-title">
+            <div class="container worker-hero-inner">
+                <div class="worker-welcome-copy">
+                    <p class="eyebrow"><span class="eyebrow-line"></span> YOUR WORKNEAR SPACE</p>
+                    <h1 id="worker-welcome-title">Good evening, <span id="worker-name">Arjun Sharma</span></h1>
+                    <p>Find nearby work and grow your earnings.</p>
+                    <div class="worker-hero-meta"><span id="worker-hero-category">Electrician</span><span
+                            id="worker-hero-location">Ajmer, Rajasthan</span><span class="worker-hero-rating">&#9733;
+                            <span id="worker-hero-rating">4.8</span></span></div>
+                </div>
+                <a class="worker-profile-peek" href="#worker-profile"><span class="worker-profile-avatar"
+                        id="worker-avatar" aria-hidden="true">AS</span><span><small>YOUR PROFILE</small><strong
+                            id="worker-profile-name">Arjun Sharma</strong><span id="worker-profile-detail">Electrician ·
+                            Ajmer</span></span><span class="profile-peek-arrow" aria-hidden="true">&#8594;</span></a>
+            </div>
+        </section>
+
+        <div class="container worker-dashboard-content">
+            <section class="worker-stats-grid" aria-label="Worker dashboard summary">
+                <article class="card worker-stat-card"><span class="worker-stat-icon"
+                        aria-hidden="true">&#128269;</span>
+                    <p>Available Jobs</p><strong id="available-job-stat">0</strong><span>Open nearby</span>
+                </article>
+                <article class="card worker-stat-card"><span class="worker-stat-icon"
+                        aria-hidden="true">&#128203;</span>
+                    <p>Applied Jobs</p><strong id="applied-job-stat">0</strong><span>Across your profile</span>
+                </article>
+                <article class="card worker-stat-card"><span class="worker-stat-icon" aria-hidden="true">&#9889;</span>
+                    <p>Active Jobs</p><strong id="active-work-stat">0</strong><span>In progress</span>
+                </article>
+                <article class="card worker-stat-card"><span class="worker-stat-icon worker-stat-icon-red"
+                        aria-hidden="true">&#8377;</span>
+                    <p>Total Earnings</p><strong>&#8377;8,450</strong><span>Mock earnings</span>
+                </article>
+            </section>
+
+            <section class="worker-section nearby-jobs-section" id="jobs-near-you" aria-labelledby="nearby-jobs-title">
+                <div class="section-heading worker-section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-muted">GOOD WORK, CLOSE BY</p>
+                        <h2 id="nearby-jobs-title">Jobs <span>Near You</span></h2>
+                    </div>
+                    <p class="worker-match-note" id="worker-match-note">Recommended for your category</p>
+                </div>
+                <form class="worker-filter-bar" id="worker-filter-form">
+                    <label class="worker-search-field"><span>Search Jobs</span><input id="job-search" type="search"
+                            placeholder="Search title, category, location" autocomplete="off"></label>
+                    <label><span>Category</span><select id="filter-category">
+                            <option value="all">All categories</option>
+                            <option>Plumber</option>
+                            <option>Electrician</option>
+                            <option>Carpenter</option>
+                            <option>Painter</option>
+                            <option>Cleaner</option>
+                            <option>Mechanic</option>
+                            <option>Driver</option>
+                            <option>AC Repair</option>
+                            <option>Mason</option>
+                            <option>Appliance Repair</option>
+                            <option>Other</option>
+                        </select></label>
+                    <label><span>Distance</span><select id="filter-distance">
+                            <option value="any">Any distance</option>
+                            <option value="1">Within 1 km</option>
+                            <option value="5">Within 5 km</option>
+                            <option value="10">Within 10 km</option>
+                        </select></label>
+                    <label><span>Budget</span><select id="filter-budget">
+                            <option value="any">Any budget</option>
+                            <option value="under-500">Under &#8377;500</option>
+                            <option value="500-1000">&#8377;500–&#8377;1,000</option>
+                            <option value="1000-2500">&#8377;1,000–&#8377;2,500</option>
+                            <option value="2500-plus">&#8377;2,500+</option>
+                        </select></label>
+                    <label><span>Urgency</span><select id="filter-urgency">
+                            <option value="any">Any urgency</option>
+                            <option>Today</option>
+                            <option>Urgent</option>
+                            <option>Flexible</option>
+                        </select></label>
+                    <button class="button button-secondary clear-worker-filters" id="clear-worker-filters"
+                        type="button">Clear Filters</button>
+                </form>
+                <p class="worker-results-note" id="worker-results-note" role="status" aria-live="polite"></p>
+                <div class="worker-jobs-grid" id="worker-jobs-list" aria-live="polite"></div>
+                <div class="worker-empty-state" id="worker-jobs-empty" hidden><span aria-hidden="true">&#9675;</span>
+                    <h3>No jobs found nearby.</h3>
+                    <p>Try changing your filters or expanding your search radius.</p><button
+                        class="button button-secondary" type="button" data-clear-filters>Clear Filters</button>
+                </div>
+            </section>
+
+            <div class="worker-lower-grid">
+                <section class="worker-section" id="my-applications" aria-labelledby="applications-title">
+                    <div class="section-heading worker-section-heading">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">YOUR RESPONSES</p>
+                            <h2 id="applications-title">My <span>Applications</span></h2>
+                        </div>
+                    </div>
+                    <div class="worker-record-list" id="applications-list"></div>
+                    <div class="worker-empty-state compact-empty" id="applications-empty" hidden>
+                        <h3>No applications yet.</h3>
+                        <p>Open a job and prepare an offer when this feature is available.</p>
+                    </div>
+                </section>
+                <section class="worker-section" id="my-active-work" aria-labelledby="active-work-title">
+                    <div class="section-heading worker-section-heading">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">WORK IN PROGRESS</p>
+                            <h2 id="active-work-title">My Active <span>Jobs</span></h2>
+                        </div>
+                    </div>
+                    <div class="worker-record-list" id="active-work-list"></div>
+                    <div class="worker-empty-state compact-empty" id="active-work-empty" hidden>
+                        <h3>No active jobs yet.</h3>
+                        <p>Accepted work will appear here.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="worker-lower-grid worker-bottom-grid">
+                <section class="worker-section earnings-section" aria-labelledby="earnings-title">
+                    <div class="section-heading worker-section-heading">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">YOUR MOMENTUM</p>
+                            <h2 id="earnings-title">Earnings <span>Overview</span></h2>
+                        </div>
+                    </div>
+                    <div class="earnings-grid">
+                        <article><span>Total Earnings</span><strong>&#8377;8,450</strong></article>
+                        <article><span>This Month</span><strong>&#8377;3,200</strong></article>
+                        <article><span>Completed Jobs</span><strong>18</strong></article>
+                        <article><span>Average Job Value</span><strong>&#8377;850</strong></article>
+                    </div>
+                    <p class="mock-data-note">Example figures only · Payments are not connected.</p>
+                </section>
+                <section class="worker-section" aria-labelledby="worker-activity-title">
+                    <div class="section-heading worker-section-heading">
+                        <div>
+                            <p class="eyebrow eyebrow-muted">THE LATEST</p>
+                            <h2 id="worker-activity-title">Recent <span>Activity</span></h2>
+                        </div>
+                    </div>
+                    <ol class="worker-activity-list">
+                        <li><span>&#9679;</span>
+                            <p>Your application for Bathroom Plumbing Repair is pending.<time>10 minutes ago</time></p>
+                        </li>
+                        <li><span>&#9679;</span>
+                            <p>A customer viewed your application.<time>2 hours ago</time></p>
+                        </li>
+                        <li><span>&#10003;</span>
+                            <p>Job marked as completed.<time>Yesterday</time></p>
+                        </li>
+                        <li><span>&#8377;</span>
+                            <p>&#8377;900 job was added to your active jobs.<time>2 days ago</time></p>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+
+            <section class="worker-profile-section" id="worker-profile" aria-labelledby="worker-profile-title">
+                <div class="section-heading worker-section-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-muted">YOUR LOCAL WORK PROFILE</p>
+                        <h2 id="worker-profile-title">Worker <span>Profile</span></h2>
+                    </div>
+                </div>
+                <div class="worker-profile-card card"><span class="worker-profile-avatar profile-avatar-large"
+                        id="worker-card-avatar" aria-hidden="true">AS</span>
+                    <div class="worker-profile-copy">
+                        <h3 id="worker-card-name">Arjun Sharma</h3>
+                        <p id="worker-card-category">Electrician</p>
+                        <div class="worker-profile-facts"><span>&#9733; <b id="worker-card-rating">4.8</b></span><span
+                                id="worker-card-completed">32 completed jobs</span><span
+                                id="worker-card-location">Ajmer, Rajasthan</span><span id="worker-card-experience">5
+                                years experience</span></div>
+                    </div><a class="button button-secondary" href="#worker-profile">View Profile</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container dashboard-footer-inner"><a class="brand footer-brand" href="index.html"><span
+                    class="brand-mark" aria-hidden="true"></span><span>WORK<span
+                        class="brand-accent">NEAR</span></span></a>
+            <p>Find the Right Worker. Get the Job Done.</p><a href="index.html#how-it-works">How WorkNear works</a>
+        </div>
+    </footer>
+    <p class="dashboard-toast" id="worker-toast" role="status" aria-live="polite" hidden></p>
+</body>
+
+</html>

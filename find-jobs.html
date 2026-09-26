@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="Search local WorkNear job opportunities.">
+    <title>Find Jobs | WorkNear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="job-data.js" defer></script>
+    <script src="find-jobs.js" defer></script>
+</head>
+
+<body class="find-jobs-page">
+    <header class="site-header">
+        <div class="container nav-shell">
+            <a class="brand" href="index.html" aria-label="WorkNear home"><span class="brand-mark"
+                    aria-hidden="true"></span><span>WORK<span class="brand-accent">NEAR</span></span></a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"
+                aria-controls="find-jobs-nav"><span></span><span></span></button>
+            <nav class="primary-nav" id="find-jobs-nav" aria-label="Find jobs navigation">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#popular-services">Find Workers</a>
+                <a class="nav-link is-current" href="find-jobs.html" aria-current="page">Find Jobs</a>
+                <a class="nav-link" href="index.html#how-it-works">How It Works</a>
+                <a class="nav-link" href="worker-dashboard.html#worker-profile">Profile</a>
+            </nav>
+            <div class="nav-actions"><button class="button button-ghost" type="button"
+                    id="find-jobs-logout">Logout</button></div>
+        </div>
+    </header>
+
+    <main class="find-jobs-main">
+        <section class="find-jobs-hero">
+            <div class="container">
+                <p class="eyebrow"><span class="eyebrow-line"></span> LOCAL SKILLS. REAL OPPORTUNITIES.</p>
+                <h1>Find Jobs</h1>
+                <p class="find-jobs-subtitle">Discover local work opportunities that match your skills.</p>
+                <form class="find-jobs-search" id="jobs-search-form" role="search">
+                    <span aria-hidden="true">&#128269;</span>
+                    <label class="visually-hidden" for="jobs-search-input">Search jobs, services or locations</label>
+                    <input id="jobs-search-input" type="search" placeholder="Search jobs, services or locations..."
+                        autocomplete="off">
+                    <button class="button button-primary" type="submit">Search</button>
+                </form>
+                <div class="find-jobs-location"><span aria-hidden="true">&#128205;</span><span>Jobs Near
+                        You</span><strong id="jobs-location-label">Ajmer, Rajasthan</strong><span
+                        class="location-radius" id="location-radius-label">Within 5 km</span></div>
+            </div>
+        </section>
+
+        <div class="container find-jobs-layout">
+            <button class="button button-secondary mobile-filter-toggle" id="mobile-filter-toggle" type="button"
+                aria-expanded="false" aria-controls="jobs-filter-panel"><span aria-hidden="true">&#9776;</span> Filters
+                <span id="active-filter-count" class="filter-count" hidden>0</span></button>
+            <aside class="jobs-filter-panel" id="jobs-filter-panel" aria-labelledby="filters-title">
+                <div class="jobs-filter-heading">
+                    <div>
+                        <p class="eyebrow eyebrow-muted">TUNE YOUR SEARCH</p>
+                        <h2 id="filters-title">Filters</h2>
+                    </div><button class="filter-panel-close" id="filter-panel-close" type="button"
+                        aria-label="Close filters">&#215;</button>
+                </div>
+                <div class="filter-control"><label for="filter-category">Category</label><select id="filter-category">
+                        <option value="all">All</option>
+                        <option>Plumber</option>
+                        <option>Electrician</option>
+                        <option>Carpenter</option>
+                        <option>Painter</option>
+                        <option>Cleaner</option>
+                        <option>Mechanic</option>
+                        <option>Driver</option>
+                        <option>AC Repair</option>
+                        <option>Mason</option>
+                        <option>Appliance Repair</option>
+                        <option>Other</option>
+                    </select></div>
+                <div class="filter-control"><label for="filter-distance">Distance</label><select id="filter-distance">
+                        <option value="1">Within 1 km</option>
+                        <option value="5" selected>Within 5 km</option>
+                        <option value="10">Within 10 km</option>
+                        <option value="25">Within 25 km</option>
+                        <option value="any">Any distance</option>
+                    </select></div>
+                <p class="filter-help">Unmeasured jobs stay visible; WorkNear does not estimate distance.</p>
+                <div class="filter-control"><label for="filter-budget">Budget</label><select id="filter-budget">
+                        <option value="any">Any budget</option>
+                        <option value="under-500">Under ₹500</option>
+                        <option value="500-1000">₹500–₹1,000</option>
+                        <option value="1000-2500">₹1,000–₹2,500</option>
+                        <option value="2500-plus">₹2,500+</option>
+                        <option value="custom">Custom range</option>
+                    </select></div>
+                <div class="custom-budget-fields" id="custom-budget-fields" hidden><span
+                        class="custom-budget-label">Custom range</span>
+                    <div><label class="visually-hidden" for="custom-budget-min">Minimum budget</label><input
+                            id="custom-budget-min" type="number" min="0" inputmode="numeric" placeholder="Min ₹"><span
+                            aria-hidden="true">to</span><label class="visually-hidden" for="custom-budget-max">Maximum
+                            budget</label><input id="custom-budget-max" type="number" min="0" inputmode="numeric"
+                            placeholder="Max ₹"></div>
+                    <p class="filter-error" id="custom-budget-error" role="status"></p>
+                </div>
+                <div class="filter-control"><label for="filter-urgency">Urgency</label><select id="filter-urgency">
+                        <option value="any">Any</option>
+                        <option>Today</option>
+                        <option>Urgent</option>
+                        <option>Flexible</option>
+                        <option>Within a week</option>
+                    </select></div>
+                <div class="filter-control"><label for="filter-job-type">Job Type</label><select id="filter-job-type">
+                        <option value="any">Any budget type</option>
+                        <option>Fixed Budget</option>
+                        <option>Negotiable</option>
+                    </select></div>
+                <div class="filter-control"><label for="filter-date">Date</label><select id="filter-date">
+                        <option value="any">Any Date</option>
+                        <option value="today">Today</option>
+                        <option value="tomorrow">Tomorrow</option>
+                        <option value="this-week">This Week</option>
+                    </select></div>
+                <div class="filter-panel-actions"><button class="button button-primary" id="apply-filters"
+                        type="button">Apply Filters</button><button class="button button-ghost" id="clear-all-filters"
+                        type="button">Clear All</button></div>
+            </aside>
+
+            <section class="find-jobs-results" aria-labelledby="results-title">
+                <div class="jobs-results-toolbar">
+                    <div class="jobs-view-tabs" role="tablist" aria-label="Job lists"><button
+                            class="jobs-view-tab is-selected" id="available-tab" type="button" role="tab"
+                            aria-selected="true">Available Jobs</button><button class="jobs-view-tab" id="saved-tab"
+                            type="button" role="tab" aria-selected="false">Saved Jobs <span
+                                id="saved-job-count">0</span></button></div>
+                    <label class="sort-control" for="sort-jobs"><span>Sort by</span><select id="sort-jobs">
+                            <option value="recommended">Recommended</option>
+                            <option value="newest">Newest</option>
+                            <option value="nearest">Nearest</option>
+                            <option value="highest-budget">Highest Budget</option>
+                            <option value="lowest-budget">Lowest Budget</option>
+                            <option value="most-urgent">Most Urgent</option>
+                        </select></label>
+                </div>
+                <div class="jobs-results-title-row">
+                    <h2 id="results-title">Open opportunities</h2>
+                    <p id="jobs-result-count" aria-live="polite">0 jobs found</p>
+                </div>
+                <div class="find-jobs-grid" id="find-jobs-list"></div>
+                <div class="find-jobs-empty" id="no-match-empty" hidden><span aria-hidden="true">&#9675;</span>
+                    <h3>No jobs match your search.</h3>
+                    <p>Try changing your filters or expanding your search area.</p>
+                    <div><button class="button button-primary" type="button" data-clear-all>Clear
+                            Filters</button><button class="button button-secondary" type="button" data-view-all>View All
+                            Jobs</button></div>
+                </div>
+                <div class="find-jobs-empty" id="no-saved-empty" hidden><span aria-hidden="true">&#9825;</span>
+                    <h3>No saved jobs yet.</h3>
+                    <p>Save a job to keep it close while you decide.</p><button class="button button-secondary"
+                        type="button" data-view-all>View All Jobs</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="dashboard-footer">
+        <div class="container dashboard-footer-inner"><a class="brand footer-brand" href="index.html"><span
+                    class="brand-mark" aria-hidden="true"></span><span>WORK<span
+                        class="brand-accent">NEAR</span></span></a>
+            <p>Find the Right Worker. Get the Job Done.</p><a href="index.html#how-it-works">How WorkNear works</a>
+        </div>
+    </footer>
+    <p class="dashboard-toast" id="find-jobs-toast" role="status" aria-live="polite" hidden></p>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <title>Post a Job | WorkNear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="job-data.js" defer></script>
+    <script src="post-job.js" defer></script>
+</head>
+
+<body class="post-job-page">
+    <header class="site-header">
+        <div class="container nav-shell post-job-nav">
+            <a class="brand" href="index.html" aria-label="WorkNear home"><span class="brand-mark"
+                    aria-hidden="true"></span><span>WORK<span class="brand-accent">NEAR</span></span></a>
+            <div class="nav-actions"><a class="button button-ghost" href="customer-dashboard.html">Dashboard</a></div>
+        </div>
+    </header>
+    <main class="container post-job-main">
+        <a class="post-job-back" href="customer-dashboard.html">&#8592; Back to dashboard</a>
+        <div class="post-job-heading">
+            <p class="eyebrow"><span class="eyebrow-line"></span> CUSTOMER SPACE</p>
+            <h1>Post a Job</h1>
+            <p>Tell us what you need. We'll help you find the right worker nearby.</p>
+        </div>
+        <section class="post-job-success" id="post-success" aria-live="polite" hidden>
+            <span class="success-mark" aria-hidden="true">&#10003;</span>
+            <div>
+                <p class="eyebrow eyebrow-muted">YOUR REQUEST IS LIVE</p>
+                <h2 tabindex="-1">Job Posted Successfully!</h2>
+                <p><span id="success-job-title"></span><span class="success-job-id">Job ID: <code
+                            id="success-job-id"></code></span></p>
+                <div class="post-success-actions"><a class="button button-primary" id="view-my-job"
+                        href="job-details.html">View My Job</a><a class="button button-secondary"
+                        href="customer-dashboard.html">Back to Dashboard</a></div>
+            </div>
+        </section>
+        <form class="post-job-form" id="post-job-form" novalidate>
+            <section class="job-form-section" aria-labelledby="basic-title">
+                <div class="job-form-section-heading"><span>01</span>
+                    <div>
+                        <h2 id="basic-title">Basic Job Information</h2>
+                        <p>Give workers a clear picture of the job.</p>
+                    </div>
+                </div>
+                <div class="post-form-grid">
+                    <div class="job-field job-field-wide"><label for="job-title">Job Title *</label><input
+                            class="form-control" id="job-title" name="title" maxlength="90"
+                            placeholder="e.g. Bathroom Plumbing Repair" aria-describedby="job-title-error" required>
+                        <p class="job-field-error" id="job-title-error"></p>
+                    </div>
+                    <div class="job-field job-field-wide"><label for="job-category">Category *</label><select
+                            class="form-control" id="job-category" name="category" aria-describedby="job-category-error"
+                            required>
+                            <option value="">Select a category</option>
+                            <option>Plumber</option>
+                            <option>Electrician</option>
+                            <option>Carpenter</option>
+                            <option>Painter</option>
+                            <option>Cleaner</option>
+                            <option>Mechanic</option>
+                            <option>Driver</option>
+                            <option>AC Repair</option>
+                            <option>Mason</option>
+                            <option>Appliance Repair</option>
+                            <option>Other</option>
+                        </select>
+                        <p class="job-field-error" id="job-category-error"></p>
+                    </div>
+                    <div class="job-field job-field-wide"><label for="job-description">Job Description
+                            *</label><textarea class="form-control" id="job-description" name="description" rows="5"
+                            maxlength="1000" placeholder="Describe the work you need done..."
+                            aria-describedby="job-description-error" required></textarea>
+                        <div class="field-meta"><span><span id="description-count">0</span>/1000</span></div>
+                        <p class="job-field-error" id="job-description-error"></p>
+                    </div>
+                </div>
+            </section>
+            <section class="job-form-section" aria-labelledby="location-title">
+                <div class="job-form-section-heading"><span>02</span>
+                    <div>
+                        <h2 id="location-title">Location</h2>
+                        <p>Enter an area manually. No GPS is used.</p>
+                    </div>
+                </div>
+                <div class="post-form-grid">
+                    <div class="job-field"><label for="job-location">Location / Area *</label><input
+                            class="form-control" id="job-location" name="location" maxlength="100"
+                            placeholder="Ajmer, Rajasthan" aria-describedby="job-location-error" required>
+                        <p class="job-field-error" id="job-location-error"></p>
+                    </div>
+                    <div class="job-field"><label for="job-landmark">Address / Landmark</label><input
+                            class="form-control" id="job-landmark" name="landmark" maxlength="120"
+                            placeholder="Near Railway Station"></div>
+                </div>
+            </section>
+            <section class="job-form-section" aria-labelledby="schedule-title">
+                <div class="job-form-section-heading"><span>03</span>
+                    <div>
+                        <h2 id="schedule-title">Date and Time</h2>
+                        <p>Choose a convenient time for the job.</p>
+                    </div>
+                </div>
+                <div class="post-form-grid post-form-grid-three">
+                    <div class="job-field"><label for="job-date">Preferred Date *</label><input class="form-control"
+                            id="job-date" name="date" type="date" aria-describedby="job-date-error" required>
+                        <p class="job-field-error" id="job-date-error"></p>
+                    </div>
+                    <div class="job-field"><label for="job-time">Preferred Time *</label><input class="form-control"
+                            id="job-time" name="time" type="time" aria-describedby="job-time-error" required>
+                        <p class="job-field-error" id="job-time-error"></p>
+                    </div>
+                    <div class="job-field"><label for="job-urgency">Urgency</label><select class="form-control"
+                            id="job-urgency" name="urgency">
+                            <option>Flexible</option>
+                            <option>Within a week</option>
+                            <option>Urgent</option>
+                            <option>Today</option>
+                        </select></div>
+                </div>
+            </section>
+            <section class="job-form-section" aria-labelledby="budget-title">
+                <div class="job-form-section-heading"><span>04</span>
+                    <div>
+                        <h2 id="budget-title">Budget</h2>
+                        <p>Workers may send offers based on your job requirements.</p>
+                    </div>
+                </div>
+                <div class="post-form-grid">
+                    <div class="job-field job-field-wide"><label for="budget-type">Budget Type</label><select
+                            class="form-control" id="budget-type" name="budgetType">
+                            <option value="Fixed Budget">Fixed Budget</option>
+                            <option value="Negotiable">Negotiable</option>
+                        </select></div>
+                    <div class="job-field job-field-wide" id="fixed-budget-field"><label for="fixed-budget">Budget
+                            Amount *</label>
+                        <div class="currency-input"><span aria-hidden="true">&#8377;</span><input class="form-control"
+                                id="fixed-budget" name="fixedBudget" type="number" min="1" step="1" placeholder="800"
+                                aria-describedby="fixed-budget-error" required></div>
+                        <p class="job-field-error" id="fixed-budget-error"></p>
+                    </div>
+                    <div class="job-field budget-range-field" hidden><label for="minimum-budget">Minimum Budget
+                            *</label>
+                        <div class="currency-input"><span aria-hidden="true">&#8377;</span><input class="form-control"
+                                id="minimum-budget" name="minBudget" type="number" min="1" step="1" placeholder="500"
+                                aria-describedby="minimum-budget-error"></div>
+                        <p class="job-field-error" id="minimum-budget-error"></p>
+                    </div>
+                    <div class="job-field budget-range-field" hidden><label for="maximum-budget">Maximum Budget
+                            *</label>
+                        <div class="currency-input"><span aria-hidden="true">&#8377;</span><input class="form-control"
+                                id="maximum-budget" name="maxBudget" type="number" min="1" step="1" placeholder="1,000"
+                                aria-describedby="maximum-budget-error"></div>
+                        <p class="job-field-error" id="maximum-budget-error"></p>
+                    </div>
+                </div>
+            </section>
+            <section class="job-form-section job-form-section-last" aria-labelledby="requirements-title">
+                <div class="job-form-section-heading"><span>05</span>
+                    <div>
+                        <h2 id="requirements-title">Additional Requirements</h2>
+                        <p>Optional details help workers prepare.</p>
+                    </div>
+                </div>
+                <div class="post-form-grid">
+                    <div class="job-field job-field-wide"><label for="job-requirements">Skills /
+                            Requirements</label><textarea class="form-control" id="job-requirements" name="requirements"
+                            rows="2" placeholder="One requirement per line"></textarea></div>
+                    <div class="job-field job-field-wide"><label for="worker-experience">Preferred Worker
+                            Experience</label><select class="form-control" id="worker-experience" name="experience">
+                            <option>Any experience</option>
+                            <option>1+ years</option>
+                            <option>2+ years</option>
+                            <option>5+ years</option>
+                        </select></div>
+                </div>
+            </section>
+            <p class="post-form-error" id="post-form-error" role="alert" hidden></p>
+            <div class="post-form-actions"><a class="button button-ghost" id="cancel-post"
+                    href="customer-dashboard.html">Cancel</a><button class="button button-primary" id="publish-job"
+                    type="submit">Post Job</button></div>
+        </form>
+    </main>
+</body>
+
+</html>

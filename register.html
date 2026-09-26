@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <title>Create an Account | WorkNear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+</head>
+
+<body class="auth-page" data-page="register">
+    <a class="skip-link" href="#role-customer">Skip to account type</a>
+    <main class="auth-layout register-layout">
+        <section class="auth-visual" aria-label="WorkNear introduction">
+            <img class="auth-visual-image"
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=85"
+                alt="" fetchpriority="high">
+            <a class="brand auth-brand" href="index.html" aria-label="WorkNear home">
+                <span class="brand-mark" aria-hidden="true"></span><span>WORK<span
+                        class="brand-accent">NEAR</span></span>
+            </a>
+            <div class="auth-visual-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> FIND YOUR PEOPLE. FIND YOUR NEXT JOB.</p>
+                <h1>Good work<br><span>starts here.</span></h1>
+                <p>A little closer to a job well done, for customers and workers alike.</p>
+                <div class="auth-connection"><span>Customers</span><span
+                        aria-hidden="true">&#8596;</span><span>Workers</span></div>
+            </div>
+            <a class="auth-back-link" href="index.html"><span aria-hidden="true">&#8592;</span> Back to WorkNear</a>
+        </section>
+
+        <section class="auth-main" aria-labelledby="register-title">
+            <div class="auth-panel auth-panel-register">
+                <p class="auth-kicker">WORKNEAR <span>/</span> JOIN YOUR NEIGHBORHOOD</p>
+                <h2 id="register-title">Create Your WorkNear Account</h2>
+                <p class="auth-subtitle">Join your local marketplace for work and workers.</p>
+
+                <fieldset class="role-fieldset" id="role-chooser">
+                    <legend>What are you looking for?</legend>
+                    <div class="role-picker">
+                        <input class="role-radio" id="role-customer" name="role" type="radio" value="customer">
+                        <label class="role-card" for="role-customer">
+                            <span class="role-card-icon" aria-hidden="true">&#128100;</span>
+                            <span class="role-card-title">Customer</span>
+                            <span class="role-card-description">I need someone to do a job.</span>
+                            <span class="role-check" aria-hidden="true">&#10003;</span>
+                        </label>
+                        <input class="role-radio" id="role-worker" name="role" type="radio" value="worker">
+                        <label class="role-card" for="role-worker">
+                            <span class="role-card-icon" aria-hidden="true">&#128119;</span>
+                            <span class="role-card-title">Worker</span>
+                            <span class="role-card-description">I want to find work near me.</span>
+                            <span class="role-check" aria-hidden="true">&#10003;</span>
+                        </label>
+                    </div>
+                    <p class="field-error role-error" id="role-error" role="alert"></p>
+                </fieldset>
+
+                <form class="auth-form register-form" id="register-form" novalidate hidden>
+                    <div class="register-fields">
+                        <div class="auth-field">
+                            <label for="register-name">Full Name</label>
+                            <input class="form-control" id="register-name" name="name" type="text" autocomplete="name"
+                                placeholder="Your full name" aria-describedby="register-name-error" required>
+                            <p class="field-error" id="register-name-error"></p>
+                        </div>
+                        <div class="auth-field">
+                            <label for="register-phone">Phone Number</label>
+                            <input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel"
+                                inputmode="tel" placeholder="+91 98765 43210" aria-describedby="register-phone-error"
+                                required>
+                            <p class="field-error" id="register-phone-error"></p>
+                        </div>
+                        <div class="auth-field form-field-wide">
+                            <label for="register-email">Email</label>
+                            <input class="form-control" id="register-email" name="email" type="email"
+                                autocomplete="email" placeholder="you@example.com"
+                                aria-describedby="register-email-error" required>
+                            <p class="field-error" id="register-email-error"></p>
+                        </div>
+                        <div class="auth-field">
+                            <label for="register-password">Password</label>
+                            <input class="form-control" id="register-password" name="password" type="password"
+                                autocomplete="new-password" minlength="8" placeholder="At least 8 characters"
+                                aria-describedby="register-password-error" required>
+                            <p class="field-error" id="register-password-error"></p>
+                        </div>
+                        <div class="auth-field">
+                            <label for="register-confirm-password">Confirm Password</label>
+                            <input class="form-control" id="register-confirm-password" name="confirmPassword"
+                                type="password" autocomplete="new-password" placeholder="Repeat your password"
+                                aria-describedby="register-confirm-password-error" required>
+                            <p class="field-error" id="register-confirm-password-error"></p>
+                        </div>
+                        <div class="auth-field form-field-wide">
+                            <label for="register-location">Location</label>
+                            <input class="form-control" id="register-location" name="location" type="text"
+                                autocomplete="address-level2" placeholder="City or neighborhood"
+                                aria-describedby="register-location-error" required>
+                            <p class="field-error" id="register-location-error"></p>
+                        </div>
+                        <div class="worker-fields" id="worker-fields" hidden>
+                            <div class="auth-field">
+                                <label for="register-category">Work Category</label>
+                                <select class="form-control" id="register-category" name="category"
+                                    aria-describedby="register-category-error">
+                                    <option value="">Choose a category</option>
+                                    <option>Plumber</option>
+                                    <option>Electrician</option>
+                                    <option>Carpenter</option>
+                                    <option>Painter</option>
+                                    <option>Cleaner</option>
+                                    <option>Mechanic</option>
+                                    <option>Driver</option>
+                                    <option>AC Repair</option>
+                                    <option>Mason</option>
+                                    <option>Other</option>
+                                </select>
+                                <p class="field-error" id="register-category-error"></p>
+                            </div>
+                            <div class="auth-field">
+                                <label for="register-experience">Years of Experience <span
+                                        class="optional-label">Optional</span></label>
+                                <input class="form-control" id="register-experience" name="experience" type="number"
+                                    min="0" max="60" placeholder="e.g. 3">
+                            </div>
+                            <div class="auth-field form-field-wide">
+                                <label for="register-bio">Short Bio <span class="optional-label">Optional</span></label>
+                                <textarea class="form-control" id="register-bio" name="bio" rows="3" maxlength="240"
+                                    placeholder="Tell customers a little about your work."></textarea>
+                            </div>
+                        </div>
+                        <div class="profile-photo-placeholder form-field-wide" id="customer-photo" hidden>
+                            <span class="photo-placeholder-icon" aria-hidden="true">&#128247;</span>
+                            <span><strong>Profile photo</strong><small>Optional · You can add one later</small></span>
+                        </div>
+                    </div>
+                    <button class="button button-primary auth-submit" id="register-submit" type="submit">Create
+                        Account</button>
+                </form>
+
+                <section class="register-success" id="register-success" aria-live="polite" hidden>
+                    <span class="success-mark" aria-hidden="true">&#10003;</span>
+                    <h3 tabindex="-1">Account created successfully.</h3>
+                    <p id="register-success-detail">Your demo profile is saved in this browser only.</p>
+                    <a class="button button-primary auth-submit" id="dashboard-link"
+                        href="customer-dashboard.html">Continue to Dashboard</a>
+                </section>
+
+                <p class="auth-switch register-switch">Already have an account? <a href="login.html">Login</a></p>
+                <p class="auth-demo-note">Prototype only. Your password is never saved in browser storage.</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

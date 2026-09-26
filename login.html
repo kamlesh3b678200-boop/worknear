@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#050505">
+    <title>Log In | WorkNear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+</head>
+
+<body class="auth-page" data-page="login">
+    <a class="skip-link" href="#login-form">Skip to login form</a>
+    <main class="auth-layout">
+        <section class="auth-visual" aria-label="WorkNear introduction">
+            <img class="auth-visual-image"
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=85"
+                alt="" fetchpriority="high">
+            <a class="brand auth-brand" href="index.html" aria-label="WorkNear home">
+                <span class="brand-mark" aria-hidden="true"></span><span>WORK<span
+                        class="brand-accent">NEAR</span></span>
+            </a>
+            <div class="auth-visual-copy">
+                <p class="eyebrow"><span class="eyebrow-line"></span> LOCAL PEOPLE. SOLID WORK.</p>
+                <h1>Good work<br><span>starts here.</span></h1>
+                <p>Find trusted local workers, or discover the next job close to home.</p>
+                <div class="auth-connection"><span>Customers</span><span
+                        aria-hidden="true">&#8596;</span><span>Workers</span></div>
+            </div>
+            <a class="auth-back-link" href="index.html"><span aria-hidden="true">&#8592;</span> Back to WorkNear</a>
+        </section>
+
+        <section class="auth-main" aria-labelledby="login-title">
+            <div class="auth-panel">
+                <p class="auth-kicker">WORKNEAR <span>/</span> ACCOUNT ACCESS</p>
+                <h2 id="login-title">Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to continue to WorkNear.</p>
+
+                <form class="auth-form" id="login-form" novalidate>
+                    <div class="auth-field">
+                        <label for="login-identifier">Email / Phone</label>
+                        <input class="form-control" id="login-identifier" name="identifier" type="text"
+                            autocomplete="username" placeholder="you@example.com or phone number"
+                            aria-describedby="login-identifier-error" required>
+                        <p class="field-error" id="login-identifier-error"></p>
+                    </div>
+                    <div class="auth-field">
+                        <label for="login-password">Password</label>
+                        <input class="form-control" id="login-password" name="password" type="password"
+                            autocomplete="current-password" placeholder="Enter your password"
+                            aria-describedby="login-password-error" required>
+                        <p class="field-error" id="login-password-error"></p>
+                    </div>
+                    <div class="login-options">
+                        <label class="checkbox-label" for="remember-me"><input id="remember-me" name="remember"
+                                type="checkbox"><span>Remember me</span></label>
+                        <button class="inline-action" id="forgot-password" type="button">Forgot Password?</button>
+                    </div>
+                    <button class="button button-primary auth-submit" type="submit">Login</button>
+                    <p class="auth-message" id="login-message" role="status" aria-live="polite" hidden></p>
+                </form>
+
+                <p class="auth-switch">Don't have an account? <a href="register.html">Create Account</a></p>
+                <div class="continue-as">
+                    <span>Continue as</span>
+                    <a href="register.html?role=customer">Customer</a>
+                    <span class="continue-divider" aria-hidden="true"></span>
+                    <a href="register.html?role=worker">Worker</a>
+                </div>
+                <p class="auth-demo-note">Prototype only. Sign-in is not connected to an authentication service.</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
